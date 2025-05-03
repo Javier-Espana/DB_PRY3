@@ -1,7 +1,7 @@
 import streamlit as st
-from app.services.reports import get_donaciones_por_campana, get_voluntarios_por_actividad
-from app.components.ui_elements import render_table, render_metric
-from app.utils.helpers import format_currency
+from services.reports import get_donaciones_por_campana, get_voluntarios_por_actividad
+from components.ui_elements import render_table, render_metric
+from utils.helpers import format_currency
 
 st.set_page_config(page_title="Reportería ONG", layout="wide")
 

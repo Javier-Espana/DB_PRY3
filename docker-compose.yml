@@ -25,6 +25,11 @@ services:
     container_name: reporteria_app
     environment:
       DATABASE_URL: "postgresql://admin:admin_password@db:5432/reporteria_db"  # URL de conexión a la base de datos
+      POSTGRES_DB: reporteria_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin_password
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
     ports:
       - "8501:8501"  # Exponiendo el puerto de Streamlit
     depends_on:
