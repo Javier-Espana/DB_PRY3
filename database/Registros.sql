@@ -403,26 +403,26 @@ INSERT INTO campana (organizacion_id, categoria_id, sede_principal_id, nombre, d
 (78, 78, 78, 'Campaña 78', 'Descripción 78', '2028-08-15', '2028-11-15', 33000.00, 'activa'),
 (79, 79, 79, 'Campaña 79', 'Descripción 79', '2028-09-01', '2028-12-01', 38000.00, 'planificada'),
 (80, 80, 80, 'Campaña 80', 'Descripción 80', '2028-09-15', '2028-12-15', 43000.00, 'finalizada'),
-(81, 81, 81, 'Campaña 81', 'Descripción 81', '2028-10-01', '2028-10-02', 50),
-(82, 82, 'Actividad 82', 'Descripción 82', '2028-10-10', '2028-10-11', 75),
-(83, 83, 'Actividad 83', 'Descripción 83', '2028-11-01', '2028-11-02', 100),
-(84, 84, 'Actividad 84', 'Descripción 84', '2028-11-10', '2028-11-11', 125),
-(85, 85, 'Actividad 85', 'Descripción 85', '2028-12-01', '2028-12-02', 150),
-(86, 86, 'Actividad 86', 'Descripción 86', '2028-12-10', '2028-12-11', 175),
-(87, 87, 'Actividad 87', 'Descripción 87', '2029-01-01', '2029-01-02', 200),
-(88, 88, 'Actividad 88', 'Descripción 88', '2029-01-10', '2029-01-11', 225),
-(89, 89, 'Actividad 89', 'Descripción 89', '2029-02-01', '2029-02-02', 250),
-(90, 90, 'Actividad 90', 'Descripción 90', '2029-02-10', '2029-02-11', 275),
-(91, 91, 'Actividad 91', 'Descripción 91', '2029-03-01', '2029-03-02', 300),
-(92, 92, 'Actividad 92', 'Descripción 92', '2029-03-10', '2029-03-11', 325),
-(93, 93, 'Actividad 93', 'Descripción 93', '2029-04-01', '2029-04-02', 350),
-(94, 94, 'Actividad 94', 'Descripción 94', '2029-04-10', '2029-04-11', 375),
-(95, 95, 'Actividad 95', 'Descripción 95', '2029-05-01', '2029-05-02', 400),
-(96, 96, 'Actividad 96', 'Descripción 96', '2029-05-10', '2029-05-11', 425),
-(97, 97, 'Actividad 97', 'Descripción 97', '2029-06-01', '2029-06-02', 450),
-(98, 98, 'Actividad 98', 'Descripción 98', '2029-06-10', '2029-06-11', 475),
-(99, 99, 'Actividad 99', 'Descripción 99', '2029-07-01', '2029-07-02', 500),
-(100, 100, 'Actividad 100', 'Descripción 100', '2029-07-10', '2029-07-11', 525);
+(81, 81, 81, 'Campaña 81', 'Descripción 81', '2028-10-01', '2029-01-01', 48000.00, 'activa'),
+(82, 82, 82, 'Campaña 82', 'Descripción 82', '2028-10-15', '2029-01-15', 53000.00, 'pausada'),
+(83, 83, 83, 'Campaña 83', 'Descripción 83', '2028-11-01', '2029-02-01', 58000.00, 'activa'),
+(84, 84, 84, 'Campaña 84', 'Descripción 84', '2028-11-15', '2029-02-15', 63000.00, 'planificada'),
+(85, 85, 85, 'Campaña 85', 'Descripción 85', '2028-12-01', '2029-03-01', 68000.00, 'activa'),
+(86, 86, 86, 'Campaña 86', 'Descripción 86', '2028-12-15', '2029-03-15', 73000.00, 'finalizada'),
+(87, 87, 87, 'Campaña 87', 'Descripción 87', '2029-01-01', '2029-04-01', 78000.00, 'activa'),
+(88, 88, 88, 'Campaña 88', 'Descripción 88', '2029-01-15', '2029-04-15', 83000.00, 'pausada'),
+(89, 89, 89, 'Campaña 89', 'Descripción 89', '2029-02-01', '2029-05-01', 88000.00, 'activa'),
+(90, 90, 90, 'Campaña 90', 'Descripción 90', '2029-02-15', '2029-05-15', 93000.00, 'planificada'),
+(91, 91, 91, 'Campaña 91', 'Descripción 91', '2029-03-01', '2029-06-01', 98000.00, 'activa'),
+(92, 92, 92, 'Campaña 92', 'Descripción 92', '2029-03-15', '2029-06-15', 12000.00, 'finalizada'),
+(93, 93, 93, 'Campaña 93', 'Descripción 93', '2029-04-01', '2029-07-01', 17000.00, 'activa'),
+(94, 94, 94, 'Campaña 94', 'Descripción 94', '2029-04-15', '2029-07-15', 22000.00, 'pausada'),
+(95, 95, 95, 'Campaña 95', 'Descripción 95', '2029-05-01', '2029-08-01', 27000.00, 'activa'),
+(96, 96, 96, 'Campaña 96', 'Descripción 96', '2029-05-15', '2029-08-15', 32000.00, 'planificada'),
+(97, 97, 97, 'Campaña 97', 'Descripción 97', '2029-06-01', '2029-09-01', 37000.00, 'activa'),
+(98, 98, 98, 'Campaña 98', 'Descripción 98', '2029-06-15', '2029-09-15', 42000.00, 'finalizada'),
+(99, 99, 99, 'Campaña 99', 'Descripción 99', '2029-07-01', '2029-10-01', 47000.00, 'activa'),
+(100,100,100,'Campaña100','Descripción100','2029-07-15','2029-10-15',52000.00,'pausada');
 
 INSERT INTO recurso (campana_id, nombre, descripcion, cantidad_requerida, cantidad_actual, unidad_medida) VALUES
 (1, 'Recurso 1', 'Descripción 1', 100, 25, 'kg'),
@@ -629,12 +629,13 @@ INSERT INTO habilidad (nombre, descripcion, categoria) VALUES
 ('Nombre 100', 'Descripción 100', 'Categoria 100');
 
 -- Inserta registros en la tabla donante antes de donacion
-INSERT INTO donante (donante_id, tipo, nombre, apellido, email, telefono, direccion) VALUES
-(1, 'individual', 'Donante 1', 'Apellido 1', 'donante1@mail.com', '555-0001', 'Dirección 1'),
-(2, 'empresa', 'Empresa 2', NULL, 'empresa2@mail.com', '555-0002', 'Dirección 2'),
-(3, 'individual', 'Donante 3', 'Apellido 3', 'donante3@mail.com', '555-0003', 'Dirección 3'),
-(4, 'empresa', 'Empresa 4', NULL, 'empresa4@mail.com', '555-0004', 'Dirección 4'),
-(5, 'individual', 'Donante 5', 'Apellido 5', 'donante5@mail.com', '555-0005', 'Dirección 5');
+INSERT INTO donante (donante_id, tipo, nombre, apellido, empresa, email, telefono, direccion) VALUES
+(1, 'individual', 'Donante 1', 'Apellido 1', NULL, 'donante1@mail.com', '555-0001', 'Dirección 1'),
+(2, 'empresa', NULL, NULL, 'Empresa 2', 'empresa2@mail.com', '555-0002', 'Dirección 2'),
+(3, 'individual', 'Donante 3', 'Apellido 3', NULL, 'donante3@mail.com', '555-0003', 'Dirección 3'),
+(4, 'empresa', NULL, NULL, 'Empresa 4', 'empresa4@mail.com', '555-0004', 'Dirección 4'),
+(5, 'individual', 'Donante 5', 'Apellido 5', NULL, 'donante5@mail.com', '555-0005', 'Dirección 5'),
+(6, 'individual', 'Donante 6', 'Apellido 6', NULL, 'donante6@mail.com', '555-0006', 'Dirección 6');
 
 INSERT INTO donacion (donante_id, campana_id, tipo, monto, descripcion_especie, fecha, anonima, mensaje) VALUES
 (1, 1, 'monetaria', 100.00, NULL, '2025-06-15', true, 'Mensaje 1'),

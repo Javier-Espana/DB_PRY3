@@ -68,7 +68,7 @@ CREATE TABLE actividad (
 CREATE TABLE donante (
     donante_id SERIAL PRIMARY KEY,
     tipo tipo_donante NOT NULL,
-    nombre VARCHAR(50) NOT NULL,
+    nombre VARCHAR(50),
     apellido VARCHAR(50),
     empresa VARCHAR(100),
     email VARCHAR(100) UNIQUE,
@@ -76,8 +76,8 @@ CREATE TABLE donante (
     direccion TEXT,
     fecha_registro DATE NOT NULL DEFAULT CURRENT_DATE,
     CONSTRAINT chk_tipo_donante CHECK (
-        (tipo = 'individual' AND apellido IS NOT NULL AND empresa IS NULL) OR
-        (tipo = 'empresa' AND empresa IS NOT NULL)
+        (tipo = 'individual' AND apellido IS NOT NULL AND nombre IS NOT NULL AND empresa IS NULL) OR
+        (tipo = 'empresa' AND empresa IS NOT NULL AND nombre IS NULL AND apellido IS NULL)
     )
 );
 
@@ -91,7 +91,7 @@ CREATE TABLE preferencia_contacto (
 
 CREATE TABLE donacion (
     donacion_id SERIAL PRIMARY KEY,
-    donante_id INTEGER NOT NULL REFERENCES donante(donante_id),
+    donante_id INTEGER NOT NULL REFERENCES donante(donante_id) ON DELETE CASCADE ON UPDATE CASCADE,
     campana_id INTEGER NOT NULL REFERENCES campana(campana_id),
     tipo tipo_donacion NOT NULL,
     monto DECIMAL(12,2) CHECK (monto > 0),
@@ -283,6 +283,10 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER after_campana_date_update
-AFTER INSERT OR UPDATE OF fecha_inicio, fecha_fin ON campana
+BEFORE INSERT OR UPDATE OF fecha_inicio, fecha_fin ON campana
 FOR EACH ROW
 EXECUTE FUNCTION actualizar_estado_campana();
+
+
+
+
