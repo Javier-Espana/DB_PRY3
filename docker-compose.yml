@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Servicio para la base de datos PostgreSQL
+  db:
+    build:
+      context: ./database  # Ubicación del Dockerfile de la base de datos
+    container_name: reporteria_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin_password
+      POSTGRES_DB: reporteria_db
+    volumes:
+      - ./database/DDL.sql:/docker-entrypoint-initdb.d/DDL.sql
+      - ./database/Registros.sql:/docker-entrypoint-initdb.d/Registros.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - reporteria_network
+
+  # Servicio para la aplicación Streamlit
+  app:
+    build:
+      context: ./app  # Cambia el contexto al subdirectorio app donde está el Dockerfile
+    container_name: reporteria_app
+    environment:
+      DATABASE_URL: "postgresql://admin:admin_password@db:5432/reporteria_db"  # URL de conexión a la base de datos
+    ports:
+      - "8501:8501"  # Exponiendo el puerto de Streamlit
+    depends_on:
+      - db  # Asegura que la base de datos se levante antes de la app
+    networks:
+      - reporteria_network
+
+# Red de redireccionamiento para ambos servicios
+networks:
+  reporteria_network:
+    driver: bridge
