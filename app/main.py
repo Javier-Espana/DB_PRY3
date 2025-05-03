@@ -17,7 +17,7 @@ st.title("Panel de Reportería - ONG")
 
 # Fechas por defecto para los filtros
 default_start = datetime.now() - timedelta(days=365)
-default_end = datetime.now()
+default_end = datetime.now() + timedelta(days=365)
 
 # Reporte 1: Donaciones por Campaña
 st.markdown("---")
@@ -35,6 +35,7 @@ donaciones = get_donaciones_por_campana(
     monto_minimo=monto_min,
     monto_maximo=monto_max
 )
+
 render_table("Donaciones por Campaña", donaciones)
 
 if donaciones:
@@ -121,7 +122,7 @@ with st.expander("Filtros"):
     fecha_inicio_efectividad = st.date_input("Fecha inicio", value=default_start, key="fecha_inicio_efectividad")
     fecha_fin_efectividad = st.date_input("Fecha fin", value=default_end, key="fecha_fin_efectividad")
     monto_min_efectividad = st.number_input("Monto objetivo mínimo", min_value=0.0, value=0.0, step=10.0, key="monto_min_efectividad")
-    monto_max_efectividad = st.number_input("Monto objetivo máximo", min_value=0.0, value=10000.0, step=10.0, key="monto_max_efectividad")
+    monto_max_efectividad = st.number_input("Monto objetivo máximo", min_value=0.0, value=100000.0, step=10.0, key="monto_max_efectividad")
     estado_campana = st.selectbox("Estado de la campaña", ["Todos", "activa", "finalizada", "planificada", "pausada"], key="estado_campana")
 
 efectividad = get_efectividad_campanas(
@@ -136,6 +137,8 @@ efectividad = get_efectividad_campanas(
 if efectividad:
     df_efectividad = pd.DataFrame(efectividad)
     df_efectividad['porcentaje_cumplimiento'] = df_efectividad['porcentaje_cumplimiento'].apply(lambda x: f"{x:.2%}")
+
+    st.write(df_efectividad)
     
     render_table("Efectividad de Campañas", df_efectividad.to_dict('records'))
     

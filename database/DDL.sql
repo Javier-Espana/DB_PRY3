@@ -286,7 +286,3 @@ CREATE TRIGGER after_campana_date_update
 BEFORE INSERT OR UPDATE OF fecha_inicio, fecha_fin ON campana
 FOR EACH ROW
 EXECUTE FUNCTION actualizar_estado_campana();
-
-
-
-

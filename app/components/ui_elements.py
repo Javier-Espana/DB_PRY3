@@ -7,26 +7,36 @@ def render_table(title: str, data: list[dict]):
     if not data:
         st.info("No hay datos disponibles.")
         return
-    
+
     df = pd.DataFrame(data)
-    
-    # Configurar formato para columnas conocidas
+
+    # Asegurar que columnas monetarias y porcentajes sean numéricas
+    for col in ['monto_total', 'monto_recaudado', 'meta_monetaria']:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors='coerce')
+
+    for col in ['porcentaje_cumplimiento', 'porcentaje_completado']:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors='coerce') / 100  # si vienen como 75 → 0.75
+
+    # Formatos
     format_dict = {
         'monto_total': "${:,.2f}",
         'monto_recaudado': "${:,.2f}",
         'meta_monetaria': "${:,.2f}",
         'porcentaje_cumplimiento': "{:.2%}",
-        'porcentaje_completado': "{:.2%}"
+        'porcentaje_completado': "{:.2%}",
+        'edad_promedio': "{:.1f}",
     }
-    
-    # Aplicar formatos solo a las columnas existentes
+
     format_columns = {k: v for k, v in format_dict.items() if k in df.columns}
-    
+
     st.dataframe(
         df.style.format(format_columns),
         use_container_width=True,
         height=min(35 * len(df) + 3, 500)
     )
+
 
 def render_metric(label: str, value: str | int | float, delta: str = ""):
     st.metric(label=label, value=value, delta=delta)
