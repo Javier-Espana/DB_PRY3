@@ -7,6 +7,8 @@ from services.reports import (
     get_efectividad_campanas
 )
 from components.ui_elements import render_table, render_metric, render_filters
+from services.reports import get_recurso_utilizado_por_campana
+import pandas as pd
 from utils.helpers import format_currency, format_percentage
 from datetime import datetime, timedelta
 
@@ -116,28 +118,41 @@ st.markdown("---")
 st.header("Efectividad de Campañas")
 
 with st.expander("Filtros"):
-    fecha_inicio_efec = st.date_input("Fecha inicio campañas", value=default_start, key="fecha_inicio_efec")
-    fecha_fin_efec = st.date_input("Fecha fin campañas", value=default_end, key="fecha_fin_efec")
-    monto_objetivo_min = st.number_input("Monto objetivo mínimo", min_value=0.0, value=1000.0, step=100.0, key="monto_objetivo_min")
-    monto_objetivo_max = st.number_input("Monto objetivo máximo", min_value=0.0, value=100000.0, step=1000.0, key="monto_objetivo_max")
+    fecha_inicio_efectividad = st.date_input("Fecha inicio", value=default_start, key="fecha_inicio_efectividad")
+    fecha_fin_efectividad = st.date_input("Fecha fin", value=default_end, key="fecha_fin_efectividad")
+    monto_min_efectividad = st.number_input("Monto objetivo mínimo", min_value=0.0, value=0.0, step=10.0, key="monto_min_efectividad")
+    monto_max_efectividad = st.number_input("Monto objetivo máximo", min_value=0.0, value=10000.0, step=10.0, key="monto_max_efectividad")
+    estado_campana = st.selectbox("Estado de la campaña", ["Todos", "activa", "finalizada", "planificada", "pausada"], key="estado_campana")
 
 efectividad = get_efectividad_campanas(
-    fecha_inicio=fecha_inicio_efec,
-    fecha_fin=fecha_fin_efec,
-    monto_objetivo_min=monto_objetivo_min,
-    monto_objetivo_max=monto_objetivo_max
+    fecha_inicio=fecha_inicio_efectividad,
+    fecha_fin=fecha_fin_efectividad,
+    monto_objetivo_min=monto_min_efectividad,
+    monto_objetivo_max=monto_max_efectividad,
+    estado=estado_campana if estado_campana != "Todos" else None
 )
 
 # Formatear porcentaje para mostrar
-for campana in efectividad:
-    campana["porcentaje_cumplimiento"] = format_percentage(campana["porcentaje_cumplimiento"])
-
-render_table("Efectividad de Campañas", efectividad)
-
 if efectividad:
-    st.line_chart(
-        data=efectividad,
-        x="campana",
-        y="monto_recaudado",
-        use_container_width=True
-    )
+    df_efectividad = pd.DataFrame(efectividad)
+    df_efectividad['porcentaje_cumplimiento'] = df_efectividad['porcentaje_cumplimiento'].apply(lambda x: f"{x:.2%}")
+    
+    render_table("Efectividad de Campañas", df_efectividad.to_dict('records'))
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.write("### Campañas más efectivas")
+        st.bar_chart(
+            data=df_efectividad.head(5),
+            x="campana",
+            y="porcentaje_cumplimiento",
+            use_container_width=True
+        )
+    with col2:
+        st.write("### Recaudación por campaña")
+        st.bar_chart(
+            data=df_efectividad,
+            x="campana",
+            y="monto_recaudado",
+            use_container_width=True
+        )

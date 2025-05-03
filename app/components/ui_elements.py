@@ -10,16 +10,20 @@ def render_table(title: str, data: list[dict]):
     
     df = pd.DataFrame(data)
     
-    # Configurar pandas para mostrar todas las columnas
-    pd.set_option('display.max_columns', None)
+    # Configurar formato para columnas conocidas
+    format_dict = {
+        'monto_total': "${:,.2f}",
+        'monto_recaudado': "${:,.2f}",
+        'meta_monetaria': "${:,.2f}",
+        'porcentaje_cumplimiento': "{:.2%}",
+        'porcentaje_completado': "{:.2%}"
+    }
     
-    # Mostrar dataframe con estilo
+    # Aplicar formatos solo a las columnas existentes
+    format_columns = {k: v for k, v in format_dict.items() if k in df.columns}
+    
     st.dataframe(
-        df.style.format({
-            'monto_total': "${:,.2f}",
-            'monto_recaudado': "${:,.2f}",
-            'meta_monetaria': "${:,.2f}"
-        }),
+        df.style.format(format_columns),
         use_container_width=True,
         height=min(35 * len(df) + 3, 500)
     )
