@@ -41,11 +41,17 @@ render_table("Donaciones por Campaña", donaciones)
 if donaciones:
     monto_total = sum(d["monto_total"] or 0 for d in donaciones)
     total_donaciones = sum(d["total_donaciones"] or 0 for d in donaciones)
+    
     col1, col2 = st.columns(2)
-    col1.write("### Total Donaciones")
-    render_metric("Total Donaciones", total_donaciones)
-    col2.write("### Monto Total")
-    render_metric("Monto Total", format_currency(monto_total))
+    
+    with col1:
+        st.write("### Total Donaciones")
+        render_metric("Total Donaciones", total_donaciones)
+    
+    with col2:
+        st.write("### Monto Total")
+        render_metric("Monto Total", format_currency(monto_total))
+
 
 # Reporte 2: Voluntarios por Actividad
 st.markdown("---")
@@ -67,8 +73,8 @@ render_table("Voluntarios por Actividad", voluntarios)
 
 if voluntarios:
     total_voluntarios = sum(v["total_voluntarios"] or 0 for v in voluntarios)
-    st.write("### Total Voluntarios")
-    render_metric("Total Voluntarios", total_voluntarios)
+    st.write("### Total voluntariados")
+    render_metric("Total voluntariados", total_voluntarios)
 
 # Reporte 3: Donaciones por Donante
 st.markdown("---")
