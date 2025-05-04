@@ -142,9 +142,7 @@ efectividad = get_efectividad_campanas(
 # Formatear porcentaje para mostrar
 if efectividad:
     df_efectividad = pd.DataFrame(efectividad)
-    df_efectividad['porcentaje_cumplimiento'] = df_efectividad['porcentaje_cumplimiento'].apply(lambda x: f"{x:.2%}")
-
-    st.write(df_efectividad)
+    df_efectividad['porcentaje_cumplimiento'] = df_efectividad['porcentaje_cumplimiento'].apply(lambda x: f"{x:.2%}")    
     
     render_table("Efectividad de Campañas", df_efectividad.to_dict('records'))
     
